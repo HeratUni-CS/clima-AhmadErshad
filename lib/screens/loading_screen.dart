@@ -2,6 +2,7 @@ import 'package:clima/screens/location_screen.dart';
 import 'package:clima/services/networking.dart';
 import 'package:flutter/material.dart';
 import 'package:clima/services/location.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 // my apiKey
 String apiKey = 'bf68533685103f009e49985a570618f9';
@@ -49,13 +50,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
-        child: TextButton(
-          onPressed: () {
-            //Get the current location
-          },
-          child: const Text('Get Location'),
+        child: SpinKitCircle(
+          color: Colors.white,
+          size: 100.0,
         ),
       ),
     );
