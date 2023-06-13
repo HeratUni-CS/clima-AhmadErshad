@@ -1,11 +1,7 @@
 import 'package:clima/screens/location_screen.dart';
-import 'package:clima/services/networking.dart';
 import 'package:flutter/material.dart';
-import 'package:clima/services/location.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-
-// my apiKey
-String apiKey = 'bf68533685103f009e49985a570618f9';
+import 'package:clima/services/weather.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});
@@ -26,16 +22,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   void getLocationData() async {
-    // create an object from Location class
-    Location location = Location();
-    // invoke getCurrentLocation method
-    // when we want to await for a method the method must be type of future
-    await location.getCurrentLocation();
 
-    NetworkHelper networkHelper = NetworkHelper(
-        'https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=$apiKey&units=metric');
+    // WeatherModel weatherModel = WeatherModel();
+    // var weatherData = await weatherModel.getLocationWeather();
 
-    var weatherData = await networkHelper.getData();
+    var weatherData = await WeatherModel().getLocationWeather();
 
     // ignore: use_build_context_synchronously
     Navigator.push(
