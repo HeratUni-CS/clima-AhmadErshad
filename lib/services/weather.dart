@@ -4,10 +4,17 @@ import 'package:clima/services/location.dart';
 // my apiKey
 const apiKey = 'bf68533685103f009e49985a570618f9';
 const openWeatherMapUrl = 'https://api.openweathermap.org/data/2.5/weather';
+
 class WeatherModel {
+  Future<dynamic> getCityWeather(String cityName) async {
+    var url = '$openWeatherMapUrl?q=$cityName&appid=$apiKey&units=metric';
+    NetworkHelper networkHelper = NetworkHelper(url);
+    var weatherData = await networkHelper.getData();
+    return weatherData;
+  }
 
   Future<dynamic> getLocationWeather() async {
-      // create an object from Location class
+    // create an object from Location class
     Location location = Location();
     // invoke getCurrentLocation method
     // when we want to await for a method the method must be type of future
